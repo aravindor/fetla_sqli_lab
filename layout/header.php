@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include("../config/database.php");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 
 <head>
     <meta charset="UTF-8" />
@@ -7,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/87843ebe11.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/sql_lab/img/favicon.ico">
     <title>Fetlla</title>
 </head>
 
@@ -20,7 +26,7 @@
                 </button>
 
                 <div class="d-flex justify-content-center flex-grow-1 ">
-                    <a class="navbar-brand ms-3" href="/sql_lab/"><?php echo $header ?></a>
+                    <a class="navbar-brand ms-3 "><?php echo $header ?></a>
                 </div>
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="width: 300px">
@@ -66,6 +72,9 @@
 
 
                         <li><a class="nav-link <?php if ($header == "Out-of-band SQLi") echo ("active") ?>" href="/sql_lab/out_of_band/list.php">Out-of-band SQLi</a></li>
+
+                        <hr/>
+                        <li><a class="nav-link <?php if ($header == "Secure version") echo ("active") ?>" href="/sql_lab/secure_version/list.php">Secure version</a></li>
 
                     </ul>
                 </div>

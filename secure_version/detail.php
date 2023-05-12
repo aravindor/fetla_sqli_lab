@@ -1,15 +1,13 @@
 <?php
-$header = 'Union based SQLi';
+$header = 'Secure version';
 include("../layout/header.php");
 $id = $_GET['id'];
-$sql = "SELECT * FROM news WHERE id = $id" ;
-// $sql = "SELECT * FROM news WHERE id = '$id'";
-// $sql = "SELECT * FROM news WHERE id = \"$id\"" ;
-// $sql = "SELECT * FROM news WHERE id = ($id)";
-// $sql = "SELECT * FROM news WHERE id = ('$id')" ;
-// $sql = "SELECT * FROM news WHERE id = (\"$id\")" ;
-echo '<script>console.log("' .addslashes($sql ). '"); </script>';
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_prepare($conn,"SELECT * FROM news WHERE id = ?") ;
+mysqli_stmt_bind_param($stmt,"i",$id);
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+
 $item = mysqli_fetch_assoc($result);
 ?>
 <div class="flex-grow-1 d-flex align-items-center flex-column ">
