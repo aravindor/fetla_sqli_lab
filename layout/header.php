@@ -2,9 +2,7 @@
 <html lang="en">
 <?php
 include("../config/database.php");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 ?>
 
 <head>
@@ -20,7 +18,7 @@ error_reporting(E_ALL);
 <body class="d-flex flex-column">
     <nav class="navbar navbar-dark bg-dark fixed-top ">
         <div>
-            <div class="d-flex flex-row align-items-center vw-100">
+            <div class="d-flex flex-row align-items-center vw-100 ">
                 <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>

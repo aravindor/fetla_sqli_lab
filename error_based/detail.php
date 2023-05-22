@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $header = 'Error based SQLi';
 include("../layout/header.php");
 $id = $_GET['id'];
@@ -9,14 +12,19 @@ $result = mysqli_query($conn, $sql);
 $item = mysqli_fetch_assoc($result);
 ?>
 <div class="flex-grow-1 d-flex align-items-center flex-column ">
-    <h3 class="mt-3 text-decoration-underline">Community News</h3>
-    <div class="d-flex flex-column align-items-center">
-        <div class="card m-2" style="width: 60%;min-width: 500px;">
-            <div class="card-body">
-            <p class="card-text">This news has <?php echo strlen($item['body']) ?> characters</p>
+    <div class="row justify-content-center flex-grow-1 text-center w-100">
+        <div class="col col-lg-8 col-md-8 col-xs-12 text-center mx-2 ">
+            <h3 class="mt-3 text-decoration-underline">Community News</h3>
+            <div class="d-flex flex-column align-items-center">
+                <div class="card m-2 text-start" >
+                    <div class="card-body">
+                        <p class="card-text">This news has <?php echo strlen($item['body']) ?> characters</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 <?php
 include("../layout/footer.php");
