@@ -26,6 +26,9 @@ include("../config/database.php");
                 <div class="d-flex justify-content-center flex-grow-1 ">
                     <a class="navbar-brand ms-3 "><?php echo $header ?></a>
                 </div>
+                <button class="btn btn-dark " style="visibility: hidden;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="width: 300px">
 

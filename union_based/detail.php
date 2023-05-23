@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $header = 'Union based SQLi';
 include("../layout/header.php");
 $id = $_GET['id'];
-$injectionType = $_GET['injection_type'];
+$injectionType = $_GET['injection_type'] ?? "";
 switch ($injectionType) {
     case 'single_quote':
         $sql = "SELECT * FROM news WHERE id = '$id'";
@@ -20,18 +20,13 @@ switch ($injectionType) {
         $sql = "SELECT * FROM news WHERE id = ('$id')";
         break;
     case 'double_quote_br':
-        $sql = "SELECT * FROM news WHERE id = (\"$id\")" ;
+        $sql = "SELECT * FROM news WHERE id = (\"$id\")";
         break;
     default:
         $sql = "SELECT * FROM news WHERE id = $id";
         break;
 }
 
-// $sql = "SELECT * FROM news WHERE id = '$id'";
-// $sql = "SELECT * FROM news WHERE id = \"$id\"" ;
-// $sql = "SELECT * FROM news WHERE id = ($id)";
-// $sql = "SELECT * FROM news WHERE id = ('$id')" ;
-// $sql = "SELECT * FROM news WHERE id = (\"$id\")" ;
 echo '<script>console.log("' . addslashes($sql) . '"); </script>';
 $result = mysqli_query($conn, $sql);
 $item = mysqli_fetch_assoc($result);
@@ -42,15 +37,18 @@ $item = mysqli_fetch_assoc($result);
             <h3 class="mt-3 text-decoration-underline">Community News</h3>
             <div class="d-flex align-items-center flex-row mt-3">
                 <h5 class="me-3 d-none d-lg-block">Injection type:</h5>
-                <div>
-                    <select class="form-select" id="injection-type">
-                        <option value="integer" selected>Integer based</option>
-                        <option value="single_quote">String based (Single quote)</option>
-                        <option value="double_quote">String based (Double quote)</option>
-                        <option value="integer_br">Integer with brackets</option>
-                        <option value="single_quote_br">String based (Single quote) with brackets</option>
-                        <option value="double_quote_br">String based (Double quote) with brackets</option>
-                    </select>
+                <div class="row text-center flex-grow-1">
+                    <div class="col col-lg-8 col-md-8 col-xs-12 text-center">
+                        <select class="form-select" id="injection-type">
+                            <option value="integer" selected>Integer based</option>
+                            <option value="single_quote">String based (Single quote)</option>
+                            <option value="double_quote">String based (Double quote)</option>
+                            <option value="integer_br">Integer with brackets</option>
+                            <option value="single_quote_br">String based (Single quote) with brackets</option>
+                            <option value="double_quote_br">String based (Double quote) with brackets</option>
+                        </select>
+                    </div>
+
                 </div>
 
             </div>
